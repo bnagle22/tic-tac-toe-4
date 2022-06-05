@@ -21,9 +21,17 @@ const sq5 = document.getElementById("5")
 const sq6 = document.getElementById("6")
 const sq7 = document.getElementById("7")
 const sq8 = document.getElementById("8")
-const squares = [sq0, sq1, sq2, 
-                  sq3, sq4, sq5, 
-                  sq6, sq7, sq8]
+const sq9 = document.getElementById("9")
+const sq10 = document.getElementById("10")
+const sq11 = document.getElementById("11")
+const sq12 = document.getElementById("12")
+const sq13 = document.getElementById("13")
+const sq14 = document.getElementById("14")
+const sq15 = document.getElementById("15")
+const squares = [sq0, sq1, sq2, sq3,
+                  sq4, sq5, sq6, sq7,
+                  sq8, sq9, sq10, sq11,
+                  sq12, sq13, sq14, sq15]
 const gameStatus = winner
 const renderMsg = document.querySelector("#render-msg")
 const reset = document.getElementById("reset")
@@ -39,9 +47,10 @@ reset.addEventListener('click', init)
 /*-------------------------------- Functions --------------------------------*/
 
 function init(){
-  board = [null, null, null,
-          null, null, null,
-          null, null, null]
+  board = [null, null, null, null, 
+          null, null, null, null,
+          null, null, null, null,
+          null, null, null, null]
   turn = 1
   winner = null
   render()
