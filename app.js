@@ -49,6 +49,12 @@ squares.forEach(function(i){
   })
 })
 reset.addEventListener('click', init)
+reset.addEventListener('mouseover', function(e){
+  e.target.style.backgroundColor = "rgb(203, 91, 0)"
+})
+reset.addEventListener('mouseout', function(e){
+  e.target.style.backgroundColor = "rgb(233, 121, 10)"
+})
 
 /*-------------------------------- Functions --------------------------------*/
 // rgb(220, 113, 6)
