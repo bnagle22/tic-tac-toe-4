@@ -42,7 +42,7 @@ const reset = document.getElementById("reset")
 squares.forEach(function(i){
   i.addEventListener('click', handleClick)
   i.addEventListener('mouseover', function(e) {
-    e.target.style.background = "rgb(200, 113, 6)";
+    e.target.style.background = "rgb(203, 91, 0)";
   })
   i.addEventListener('mouseout', function(e){
     e.target.style.background = "rgb(233, 121, 10)"
