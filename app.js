@@ -41,10 +41,17 @@ const reset = document.getElementById("reset")
 
 squares.forEach(function(i){
   i.addEventListener('click', handleClick)
+  i.addEventListener('mouseover', function(e) {
+    e.target.style.background = "rgb(200, 113, 6)";
+  })
+  i.addEventListener('mouseout', function(e){
+    e.target.style.background = "rgb(233, 121, 10)"
+  })
 })
 reset.addEventListener('click', init)
 
 /*-------------------------------- Functions --------------------------------*/
+// rgb(220, 113, 6)
 
 function init(){
   board = [null, null, null, null, 
@@ -104,6 +111,7 @@ function checkWin(){
     }
   }
 }
+
 
 // function checkWinX(){
 //     if((board[0] === 1 && board[1] === 1 && board[2] === 1)
