@@ -1,8 +1,8 @@
 /*-------------------------------- Constants --------------------------------*/
 
-winCombos = [ [0, 1, 2], [3, 4, 5], [6, 7, 8],
-              [0, 3, 6], [1, 4, 7], [2, 5, 8],
-              [0, 4, 8], [2, 4, 6] ]
+winCombos = [ [0, 1, 2, 3], [4, 5, 6, 7], [8, 9, 10, 11], [12, 13, 14, 15],
+              [0, 4, 8, 12], [1, 5, 9, 13], [2, 6, 10, 14], [3, 7, 11, 15],
+              [0, 5, 10, 14], [3, 6, 9, 12]]
 
 /*---------------------------- Variables (state) ----------------------------*/
 
@@ -77,7 +77,7 @@ function handleClick(event){
       board[event.target.id] = 1
       turn = -1
       render()
-      checkWinX()
+      checkWin()
       checkTie()
     } else {
       event.target.style.color = 'white'
@@ -85,51 +85,55 @@ function handleClick(event){
       board[event.target.id] = -1
       turn = 1
       render()
-      checkWinO()
+      checkWin()
       checkTie()
     }
   }
 }
 
 // more efficient way to check win- needs to include win for Player 2
-// function checkWin(){
-//   for(let i = 0; i < winCombos.length; i ++){
-//     if(Math.abs(board[winCombos[i][0]] + board[winCombos[i][1]] + board[winCombos[i][2]] == 3)){
+function checkWin(){
+  for(let i = 0; i < winCombos.length; i ++){
+    if(board[winCombos[i][0]] + board[winCombos[i][1]] + board[winCombos[i][2]] + board[winCombos[i][3]]== 4){
+      winner = 1
+      renderMsg.innerText = "Player 1 (X) wins!"
+    }
+    else if(board[winCombos[i][0]] + board[winCombos[i][1]] + board[winCombos[i][2]] + board[winCombos[i][3]]== -4){
+      winner = -1
+      renderMsg.innerText = "Player 2 (O) wins!"
+    }
+  }
+}
+
+// function checkWinX(){
+//     if((board[0] === 1 && board[1] === 1 && board[2] === 1)
+//     || (board[3] === 1 && board[4] === 1 && board[5] === 1)
+//     || (board[6] === 1 && board[7] === 1 && board[8] === 1)
+//     || (board[0] === 1 && board[3] === 1 && board[6] === 1)
+//     || (board[1] === 1 && board[4] === 1 && board[7] === 1)
+//     || (board[2] === 1 && board[5] === 1 && board[8] === 1)
+//     || (board[0] === 1 && board[4] === 1 && board[8] === 1)
+//     || (board[2] === 1 && board[4] === 1 && board[6] === 1)
+//     ){
 //       winner = 1
 //       renderMsg.innerText = "Player 1 (X) wins!"
 //     }
 //   }
+
+// function checkWinO(){
+//   if((board[0] === -1 && board[1] === -1 && board[2] === -1)
+//   || (board[3] === -1 && board[4] === -1 && board[5] === -1)
+//   || (board[6] === -1 && board[7] === -1 && board[8] === -1)
+//   || (board[0] === -1 && board[3] === -1 && board[6] === -1)
+//   || (board[1] === -1 && board[4] === -1 && board[7] === -1)
+//   || (board[2] === -1 && board[5] === -1 && board[8] === -1)
+//   || (board[0] === -1 && board[4] === -1 && board[8] === -1)
+//   || (board[2] === -1 && board[4] === -1 && board[6] === -1)
+//   ){
+//     winner = -1
+//     renderMsg.innerText = "Player 2 (O) wins!"
+//   }
 // }
-
-function checkWinX(){
-    if((board[0] === 1 && board[1] === 1 && board[2] === 1)
-    || (board[3] === 1 && board[4] === 1 && board[5] === 1)
-    || (board[6] === 1 && board[7] === 1 && board[8] === 1)
-    || (board[0] === 1 && board[3] === 1 && board[6] === 1)
-    || (board[1] === 1 && board[4] === 1 && board[7] === 1)
-    || (board[2] === 1 && board[5] === 1 && board[8] === 1)
-    || (board[0] === 1 && board[4] === 1 && board[8] === 1)
-    || (board[2] === 1 && board[4] === 1 && board[6] === 1)
-    ){
-      winner = 1
-      renderMsg.innerText = "Player 1 (X) wins!"
-    }
-  }
-
-function checkWinO(){
-  if((board[0] === -1 && board[1] === -1 && board[2] === -1)
-  || (board[3] === -1 && board[4] === -1 && board[5] === -1)
-  || (board[6] === -1 && board[7] === -1 && board[8] === -1)
-  || (board[0] === -1 && board[3] === -1 && board[6] === -1)
-  || (board[1] === -1 && board[4] === -1 && board[7] === -1)
-  || (board[2] === -1 && board[5] === -1 && board[8] === -1)
-  || (board[0] === -1 && board[4] === -1 && board[8] === -1)
-  || (board[2] === -1 && board[4] === -1 && board[6] === -1)
-  ){
-    winner = -1
-    renderMsg.innerText = "Player 2 (O) wins!"
-  }
-}
 
 function checkTie(){
   if (winner === null && board.every(function(i){
